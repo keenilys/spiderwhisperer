@@ -40,12 +40,12 @@
       }
 
       .sidebar:expanded { 
-        width: 200px; /*Sidebar expanded width since you can never find it*/
+        width: 160px; /*Sidebar expanded width since you can never find it*/
         filter: brightness(1.0);
       }
 
       .sidebar:hover {
-        width: 160px
+        width: 160px; /* Sidebar expanded width on desktop hover */
         filter: brightness(1.0);
       }
       .divider {
@@ -200,6 +200,11 @@
           width: 40%;  
           max-height: 120px; 
         }
+
+        .content {
+          margin-left: 60px; 
+        }
+
       }
     </style>
   </head>
@@ -255,18 +260,14 @@
         const sidebar = document.querySelector('.sidebar');
         sidebar.classList.toggle('expanded');
       }
-      // Detect swipe start
       document.body.addEventListener('touchstart', function(event) {
         touchStartX = event.changedTouches[0].screenX;
       });
-      // Detect swipe end
       document.body.addEventListener('touchend', function(event) {
         touchEndX = event.changedTouches[0].screenX;
-        // If swipe is left to right, open the sidebar
         if (touchEndX > touchStartX + 50) {
           document.querySelector('.sidebar').classList.add('expanded');
         }
-        // If swipe is right to left, close the sidebar
         else if (touchEndX < touchStartX - 50) {
           document.querySelector('.sidebar').classList.remove('expanded');
         }
