@@ -144,7 +144,6 @@
         color: white;
         width: 100%;
         transition: margin-left 0.3s ease-in-out;
-        min-height: 100vh;
       }
 
       .sidebar.expanded + .content {
@@ -275,6 +274,16 @@
           document.querySelector('.sidebar').classList.remove('expanded');
         }
       });
+      // Dynamically adjust the content height when the page loads or is resized
+      function adjustContentHeight() {
+      const content = document.querySelector('.content');
+      const viewportHeight = window.innerHeight; // Get the current viewport height
+      content.style.minHeight = `${viewportHeight}px`; // Set the height to the viewport height
+      }
+
+      // Call the function on page load and resize
+      window.addEventListener('load', adjustContentHeight);
+      window.addEventListener('resize', adjustContentHeight);
     </script>
   </body>
 </html>
