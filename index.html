@@ -256,6 +256,7 @@
     </div>
 
      <script>
+      // Swipe gestures for mobile with javascript - let's fix it later lol
       let touchStartX = 0;
       let touchEndX = 0;
       function toggleSidebar() {
@@ -274,14 +275,12 @@
           document.querySelector('.sidebar').classList.remove('expanded');
         }
       });
-      // Dynamically adjust the content height when the page loads or is resized
+      // Auto adjust height
       function adjustContentHeight() {
       const content = document.querySelector('.content');
-      const viewportHeight = window.innerHeight; // Get the current viewport height
-      content.style.minHeight = `${viewportHeight}px`; // Set the height to the viewport height
+      const viewportHeight = window.innerHeight; 
+      content.style.minHeight = `${viewportHeight}px`; 
       }
-
-      // Call the function on page load and resize
       window.addEventListener('load', adjustContentHeight);
       window.addEventListener('resize', adjustContentHeight);
     </script>
