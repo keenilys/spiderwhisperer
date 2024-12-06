@@ -17,9 +17,10 @@
         font-family: Arial, sans-serif;
         color: white;
         display: flex;
+        overflow: hidden;
       }
 
-      /*Sidebar Collapsed and Hover*/
+      /*Sidebar Collapsed and Hover for PC, Expanded for Mobile*/
       .sidebar {
         width: 80px; /*Sidebar width since you can never find it*/ 
         height: 100%; 
@@ -38,12 +39,15 @@
         filter: brightness(0.8); /*Using as a drop shadow of sorts.. It keeps ending up behind the sidebar*/
       }
 
-      .sidebar:hover {
+      .sidebar:expanded { 
         width: 160px; /*Sidebar expanded width since you can never find it*/
-        box-shadow: 4px 0px 25px rgba(0, 0, 0, 0.6);
         filter: brightness(1.0);
       }
 
+      .sidebar:hover {
+        width: 160px; /* Sidebar expanded width on desktop hover */
+        filter: brightness(1.0);
+      }
       .divider {
         width: 80%;
         height: 2px;
@@ -59,6 +63,8 @@
         transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
       }
 
+      .sidebar.expanded h2,
+      .sidebar.expanded button,
       .sidebar:hover h2,
       .sidebar:hover button {
         opacity: 1;
@@ -104,7 +110,7 @@
         border-radius: 25px;
         transition: background-color 0.3s, box-shadow 0.3s, transform 0.2s;
         min-width: 150px;
-        height: 50px;
+        height: 45px;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -141,8 +147,8 @@
         transition: margin-left 0.3s ease-in-out;
       }
 
-      .sidebar:hover + .content {
-        margin-left: 125px;
+      .sidebar.expanded + .content {
+        margin-left: 160px;
       }
 
       h1 {
@@ -169,13 +175,31 @@
       }
 
       .sidebar .extra-content img {
-        width: 100%;
-        max-height: 200px; 
+        width: 60%;
+        max-height: 150px; 
         object-fit: contain; 
         border-radius: 10px;
         position: absolute; 
         bottom: 50px; 
       }
+      /*Mobile Sidebar*/
+      @media (max-width: 768px) {
+        .sidebar {
+          width: 60px; 
+        }
+
+        .sidebar.expanded {
+          width: 140px; 
+        }
+
+        .sidebar button {
+          font-size: 0.9rem; 
+        }
+
+        .sidebar .extra-content img {
+          width: 40%;  
+          max-height: 120px; 
+        }
       }
     </style>
   </head>
@@ -183,7 +207,7 @@
   <body>
     <div class="sidebar">
       <!--Hamburger Menu-->
-      <div class="hamburger">
+      <div class="hamburger" onclick="toggleSidebar()">
         <span></span>
         <span></span>
         <span></span>
