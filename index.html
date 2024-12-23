@@ -6,25 +6,26 @@
     <title>Spider Whisperer</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-    /*Background image, font, etc.*/
+      /* Background image, font, etc. */
       body {
         margin: 0;
         padding: 0;
         background-image: url('https://images2.imgbox.com/ac/d7/eYl7ZMX2_o.jpg');
         background-size: cover;
-        background-position: center;
+        background-repeat: no-repeat;
+        background-position: center center;
         font-family: Arial, sans-serif;
         color: white;
         display: flex;
         overflow: hidden;
+        min-height: 100vh;
       }
 
-      /*Sidebar Collapsed and Hover for PC, Expanded for Mobile*/
+      /* Sidebar Collapsed and Hover for PC, Expanded for Mobile */
       .sidebar {
-        width: 80px; /*Sidebar width since you can never find it*/ 
-        height: 100%; 
+        width: 80px;
+        height: 100%;
         background: linear-gradient(145deg, #102540, #204c6e);
-        background-size: cover;
         position: fixed;
         top: 0;
         left: 0;
@@ -35,26 +36,27 @@
         justify-content: flex-start;
         align-items: center;
         transition: width 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-        filter: brightness(0.8); /*Using as a drop shadow of sorts.. It keeps ending up behind the sidebar*/
+        filter: brightness(0.8);
       }
 
-      .sidebar:expanded { 
-        width: 160px; /*Sidebar expanded width since you can never find it*/
+      .sidebar:expanded {
+        width: 160px;
         filter: brightness(1.0);
       }
 
       .sidebar:hover {
-        width: 160px; /* Sidebar expanded width on desktop hover */
+        width: 160px;
         filter: brightness(1.0);
       }
+
       .divider {
         width: 80%;
         height: 2px;
-        background-color: rgba(255, 255, 255, 0.3); 
+        background-color: rgba(255, 255, 255, 0.3);
         margin: 20px 0;
       }
 
-      /*Sidebar Buttons and CSS*/
+      /* Sidebar Buttons and CSS */
       .sidebar h2,
       .sidebar button {
         opacity: 0;
@@ -96,12 +98,12 @@
         border-radius: 5px;
       }
 
-      /*Sidebar Buttons Styling - DON'T FUCKING TOUCH THIS*/
+      /*Sidebar Buttons Styling */
       .sidebar button {
         background: linear-gradient(145deg, #1e3a5f, #3a577d);
         border: 1px solid #2c456a;
         padding: 15px 30px;
-        margin: 20px 0; 
+        margin: 20px 0;
         color: white;
         font-size: 1rem;
         font-family: 'Roboto', Arial, sans-serif;
@@ -117,24 +119,21 @@
         position: relative;
         box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
         overflow: hidden;
-        white-space: nowrap; 
+        white-space: nowrap;
         width: 100%;
         box-sizing: border-box;
       }
 
-      .sidebar button i {
-        margin-right: 10px;
-      }
       /*Sidebar Hover / Active Effects*/
       .sidebar button:hover {
-        background: linear-gradient(145deg, #2a4b78, #1e3a5f); 
-        box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3); 
-        transform: scale(1.05); 
+        background: linear-gradient(145deg, #2a4b78, #1e3a5f);
+        box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
+        transform: scale(1.05);
       }
 
       .sidebar button:active {
-        transform: scale(0.95); 
-        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2); 
+        transform: scale(0.95);
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
       }
 
       .content {
@@ -146,7 +145,8 @@
         transition: margin-left 0.3s ease-in-out;
       }
 
-      .sidebar.expanded + .content {
+      .sidebar.expanded+.content,
+      .sidebar:hover+.content {
         margin-left: 160px;
       }
 
@@ -170,50 +170,50 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        flex-grow: 1; 
+        flex-grow: 1;
       }
 
       .sidebar .extra-content img {
         width: 60%;
-        max-height: 150px; 
-        object-fit: contain; 
+        max-height: 150px;
+        object-fit: contain;
         border-radius: 10px;
-        position: absolute; 
-        bottom: 50px; 
+        position: absolute;
+        bottom: 50px;
       }
+
       /*Mobile Sidebar*/
       @media (max-width: 768px) {
         .sidebar {
-          width: 60px; 
+          width: 60px;
         }
 
         .sidebar.expanded {
-          width: 140px; 
+          width: 140px;
         }
 
         .sidebar button {
-          font-size: 0.9rem; 
+          font-size: 0.9rem;
         }
 
         .sidebar .extra-content img {
-          width: 40%;  
-          max-height: 120px; 
+          width: 40%;
+          max-height: 120px;
         }
 
         .content {
-          margin-left: 100px; 
+          margin-left: 100px;
         }
 
         body {
-      background-position: 80% center;
+          background-position: 80% center;
         }
       }
     </style>
   </head>
-  <!--HTML-->
   <body>
     <div class="sidebar">
-      <!--Hamburger Menu-->
+      <!-- Hamburger Menu -->
       <div class="hamburger" onclick="toggleSidebar()">
         <span></span>
         <span></span>
@@ -221,65 +221,36 @@
       </div>
       <div class="divider"></div>
       <h2>Spider Whisperer</h2>
-      <!--Buttons-->
+      <!-- Buttons -->
       <a href="https://www.bootlegs.spiderwhisperer.ca/" style="text-decoration: none;">
-      <button>
-      <i class="fa-solid fa-film"> Bootlegs </i>
-      </button>
+        <button>
+          <i class="fa-solid fa-film"> Bootlegs </i>
+        </button>
       </a>
       <a href="/droppedal/" style="text-decoration: none;">
-      <button>
-        <i class="fa-solid fa-spider"> Drop Pedal</i>
-      </button>
+        <button>
+          <i class="fa-solid fa-spider"> Drop Pedal</i>
+        </button>
       </a>
       <a href="https://google.com/" style="text-decoration: none;">
-      <button>
-        <i class="fa-solid fa-heart"> Temp Spot</i>
-      </button>
+        <button>
+          <i class="fa-solid fa-heart"> Temp Spot</i>
+        </button>
       </a>
       <!--Spider Artwork Bottom Of Sidebar - Might update -->
       <div class="extra-content">
         <img src="https://static.vecteezy.com/system/resources/previews/009/381/394/non_2x/spider-clipart-design-illustration-free-png.png" alt="Spider Image" />
       </div>
     </div>
-
-    <script>
-      function toggleSidebar() {
-        const sidebar = document.querySelector('.sidebar');
-        sidebar.classList.toggle('expanded');
-      }
-    </script>
-
     <div class="content">
       <h1>Spider Whisperer</h1>
       <p>For personal projects / servers</p>
     </div>
-
-     <script>
-      // Swipe gestures for mobile with javascript - let's fix it later lol
-      let touchStartX = 0;
-      let touchEndX = 0;
-      function toggleSidebar() {
-        const sidebar = document.querySelector('.sidebar');
-        sidebar.classList.toggle('expanded');
-      }
-      document.body.addEventListener('touchstart', function(event) {
-        touchStartX = event.changedTouches[0].screenX;
-      });
-      document.body.addEventListener('touchend', function(event) {
-        touchEndX = event.changedTouches[0].screenX;
-        if (touchEndX > touchStartX + 50) {
-          document.querySelector('.sidebar').classList.add('expanded');
-        }
-        else if (touchEndX < touchStartX - 50) {
-          document.querySelector('.sidebar').classList.remove('expanded');
-        }
-      });
-      // Auto adjust height
+    <script>
       function adjustContentHeight() {
-      const content = document.querySelector('.content');
-      const viewportHeight = window.innerHeight; 
-      content.style.minHeight = `${viewportHeight}px`; 
+        const content = document.querySelector('.content');
+        const viewportHeight = window.innerHeight;
+        content.style.minHeight = `${viewportHeight}px`;
       }
       window.addEventListener('load', adjustContentHeight);
       window.addEventListener('resize', adjustContentHeight);
