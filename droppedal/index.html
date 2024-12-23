@@ -55,6 +55,11 @@
         background-color: rgba(255, 255, 255, 0.3);
         margin: 20px 0;
       }
+      
+      .sidebar button.back-btn {
+        padding: 5px 65px;
+        margin: 20px 10;
+}
 
       /* Sidebar Buttons and CSS */
       .sidebar h2,
@@ -80,29 +85,11 @@
         text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.7);
       }
 
-      /* Hamburger menu */
-      .hamburger {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        align-items: center;
-        width: 30px;
-        height: 25px;
-        cursor: pointer;
-      }
-
-      .hamburger span {
-        width: 30px;
-        height: 4px;
-        background-color: white;
-        border-radius: 5px;
-      }
-
       /* Sidebar Buttons Styling */
       .sidebar button {
         background: linear-gradient(145deg, #1e3a5f, #3a577d);
         border: 1px solid #2c456a;
-        padding: 15px 30px;
+        padding: 15px 25px;
         margin: 20px 0;
         color: white;
         font-size: 1rem;
@@ -121,11 +108,6 @@
         overflow: hidden;
         white-space: nowrap;
         width: 100%;
-        box-sizing: border-box;
-      }
-
-      .sidebar button i {
-        margin-right: 10px;
       }
 
       /* Sidebar Hover / Active Effects */
@@ -147,7 +129,7 @@
         text-align: center;
         color: white;
         width: 100%;
-        transition: margin-left 0.3s ease-in-out;
+        transition: margin-left 0.3s ease-in-out; /* Smooth transition for content movement */
       }
 
       .sidebar.expanded + .content {
@@ -163,6 +145,28 @@
         font-size: 1.2rem;
         text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
       }
+      
+      /*Spider Image at Bottom*/
+      .sidebar .extra-content {
+        width: 100%;
+        margin-top: 20px;
+        padding-top: 20px;
+        text-align: center;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-grow: 1; 
+      }
+
+      .sidebar .extra-content img {
+        width: 60%;
+        max-height: 150px; 
+        object-fit: contain; 
+        border-radius: 10px;
+        position: absolute; 
+        bottom: 50px; 
+      }
 
       /* Mobile Sidebar */
       @media (max-width: 768px) {
@@ -176,6 +180,11 @@
 
         .sidebar button {
           font-size: 0.9rem;
+        }
+        
+        .sidebar .extra-content img {
+          width: 40%;  
+          max-height: 120px; 
         }
 
         .content {
@@ -191,7 +200,9 @@
       .components-list {
         display: none;
         margin-top: 20px;
-        text-align: left;
+        text-align: middle;
+        width: 70%;
+        margin: 0 auto;
       }
 
       .components-list.visible {
@@ -204,40 +215,51 @@
       }
 
       .components-list li {
-        background: rgba(255, 255, 255, 0.1);
         margin: 5px 0;
-        padding: 10px;
-        border-radius: 5px;
       }
 
-      .components-btn-container {
-        display: flex;
-        justify-content: center;
-        margin-top: 20px;
+      /* Style for the links in the components list (now matching 'Show Components') */
+      .components-list a {
+        display: block;
+        padding: 15px 30px;
+        background: linear-gradient(145deg, #1f5176, #4c738c); 
+        color: white;
+        text-decoration: none;
+        border-radius: 25px;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+        transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
       }
 
+      .components-list a:hover {
+        background: linear-gradient(145deg, #2a5d8e, #3f7493); /* Hover state */
+        transform: scale(1.05);
+        box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
+      }
+
+      .components-list a:active {
+        transform: scale(0.95);
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+      }
+
+      .components-list a i {
+        margin-right: 10px;
+      }
+
+      /* Styling for the Show Components button */
       .components-btn-container button {
         padding: 15px 30px;
-        background: linear-gradient(145deg, #1e3a5f, #3a577d);
+        background: linear-gradient(145deg, #1f5176, #4c738c); /* Updated gradient */
         color: white;
         border: none;
         cursor: pointer;
         border-radius: 25px;
         box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
         transition: transform 0.2s, background 0.3s;
-      }
-
-      .components-btn-container button:hover {
-        background: linear-gradient(145deg, #2a4b78, #1e3a5f);
-        transform: scale(1.05);
-      }
-
-      .components-btn-container button:active {
-        transform: scale(0.95);
+        font-size: 1rem;
+        width: auto;
       }
     </style>
   </head>
-
   <body>
     <div class="sidebar">
       <!-- Hamburger Menu -->
@@ -248,6 +270,7 @@
       </div>
       <div class="divider"></div>
       <h2>Drop Pedal Build</h2>
+      
       <!-- Sidebar Buttons -->
       <a href="#" style="text-decoration: none;">
         <button>
@@ -255,15 +278,20 @@
         </button>
       </a>
       <a href="#" style="text-decoration: none;">
-        <button onclick="showComponents()">
+        <button onclick="showComponents()" class="components-btn">
           <i class="fa-solid fa-cogs"> Components</i>
         </button>
       </a>
       <a href="#" style="text-decoration: none;">
-        <button onclick="goBack()">
-          <i class="fa-solid fa-arrow-left"> Back</i>
+        <button class="back-btn" onclick="goBack()">
+          <i class="fa-solid fa-arrow-left"> Go Back!</i>
         </button>
       </a>
+      <div class="xx">
+        <!-- Spider Image Here -->
+        <img src="https://static.vecteezy.com/system/resources/previews/009/381/394/non_2x/spider-clipart-design-illustration-free-png.png
+" alt="Spider">
+      </div>
     </div>
 
     <div class="content">
@@ -276,18 +304,17 @@
       </div>
       <div class="components-list" id="componentsList">
         <ul>
-          <li>CL21A106KAYNNNE</li>
-          <li>STM32H750VBT6</li>
-          <li>TLV320AIC3105IRHBT</li>
-          <li>TL072HIDDFR</li>
-          <li>CMF55100K00FHEA</li>
-          <li>CMF551M0000FHEB</li>
-          <li>C0805C104K1RAC</li>
-          <li>NMJ6HCD2</li>
-          <li>SF17020F-0302-21R-L-015</li>
-          <li>LM1117MPX-3.3/NOPB</li>
+          <li><a href="https://www.mouser.ca/ProductDetail/187-CL21A106KAYNNNE" target="_blank">CL21A106KAYNNNE</a></li>
+          <li><a href="https://www.mouser.ca/ProductDetail/511-STM32H750VBT6" target="_blank">STM32H750VBT6</a></li>
+          <li><a href="https://www.mouser.ca/ProductDetail/595-TLV320C3105IRHBT" target="_blank">TLV320AIC3105IRHBT</a></li>
+          <li><a href="https://www.mouser.ca/ProductDetail/595-TL072HIDDFR" target="_blank">TL072HIDDFR</a></li>
+          <li><a href="https://www.mouser.ca/ProductDetail/71-CMF55100K00FHEA" target="_blank">CMF55100K00FHEA</a></li>
+          <li><a href="https://www.mouser.ca/ProductDetail/71-CMF551M0000FHEB" target="_blank">CMF551M0000FHEB</a></li>
+          <li><a href="https://www.mouser.ca/ProductDetail/80-C0805C104K1RAC" target="_blank">C0805C104K1RAC</a></li>
+          <li><a href="https://www.mouser.ca/ProductDetail/550-22302" target="_blank">NMJ6HCD2</a></li>
+          <li><a href="https://www.mouser.ca/ProductDetail/107-SF17020F-32-21RL" target="_blank">SF17020F-0302-21R-L-015</a></li>
+          <li><a href="https://www.mouser.ca/ProductDetail/Texas-Instruments/LM1117MPX-3.3-NOPB" target="_blank">LM1117MPX-3.3/NOPB</a></li>
         </ul>
-      </div>
     </div>
 
     <script>
@@ -295,6 +322,7 @@
         const sidebar = document.querySelector('.sidebar');
         const content = document.querySelector('.content');
         sidebar.classList.toggle('expanded');
+        content.classList.toggle('shifted');
       }
 
       function showComponents() {
@@ -305,6 +333,8 @@
       function goBack() {
         window.history.back();
       }
+      
+      
     </script>
   </body>
 </html>
