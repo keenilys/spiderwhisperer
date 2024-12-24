@@ -17,8 +17,7 @@
         font-family: Arial, sans-serif;
         color: white;
         display: flex;
-        overflow: hidden;
-        min-height: 100vh;
+        min-height: 100vh; /* Ensure the body takes at least 100% of the viewport height */
       }
 
       /* Sidebar Collapsed and Hover for PC, Expanded for Mobile */
@@ -39,7 +38,7 @@
         filter: brightness(0.8);
       }
 
-      .sidebar:expanded {
+      .sidebar.expanded {
         width: 160px;
         filter: brightness(1.0);
       }
@@ -56,11 +55,10 @@
         margin: 20px 0;
       }
 
-      /* Don't remove this - I have no idea how to fix it */
       .sidebar button.back-btn {
         padding: 5px 45px;
         margin: 20px 10;
-      }
+}
 
       /* Sidebar Buttons and CSS */
       .sidebar h2,
@@ -86,24 +84,6 @@
         text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.7);
       }
 
-      /*Hamburger menu*/
-      .hamburger {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        align-items: center;
-        width: 30px;
-        height: 25px;
-        cursor: pointer;
-      }
-
-      .hamburger span {
-        width: 30px;
-        height: 4px;
-        background-color: white;
-        border-radius: 5px;
-      }
-
       /* Sidebar Buttons Styling */
       .sidebar button {
         background: linear-gradient(145deg, #1e3a5f, #3a577d);
@@ -127,21 +107,32 @@
         overflow: hidden;
         white-space: nowrap;
         width: 100%;
-        box-sizing: border-box;
       }
 
+      /* Sidebar Hover / Active Effects */
+      .sidebar button:hover {
+        background: linear-gradient(145deg, #2a4b78, #1e3a5f);
+        box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
+        transform: scale(1.05);
+      }
+
+      .sidebar button:active {
+        transform: scale(0.95);
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+      }
+
+      /* Content Section */
       .content {
-        margin-left: 16px;
+        margin-left: 100px; /* Default margin for when sidebar is collapsed */
         padding: 20px;
         text-align: center;
         color: white;
         width: 100%;
-        transition: margin-left 0.3s ease-in-out;
+        transition: margin-left 0.3s ease-in-out; /* Smooth transition for content movement */
       }
 
-      .sidebar.expanded+.content,
-      .sidebar:hover+.content {
-        margin-left: 160px;
+      .sidebar.expanded + .content {
+        margin-left: 160px; /* Adjust for expanded sidebar */
       }
 
       h1 {
@@ -176,6 +167,77 @@
         bottom: 50px;
       }
 
+
+      .components-list.visible {
+        display: block;
+      }
+
+      .components-list ul {
+        list-style-type: none;
+        padding: 0;
+      }
+
+      .components-list li {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 10px;
+        margin: 10px 0;
+        position: relative;
+      }
+
+      .components-list button {
+        display: block;
+        padding: 15px 30px;
+        background: linear-gradient(145deg, #1f5176, #4c738c);
+        color: white;
+        text-decoration: none;
+        border-radius: 25px;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+        transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+        min-width: 200px;
+        max-width: 200px;
+        max-height: 100px;
+        cursor: pointer;
+        margin-right: 10px;
+      }
+
+      .components-list button:hover {
+        background: linear-gradient(145deg, #2a5d8e, #3f7493);
+        transform: scale(1.05);
+        box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
+      }
+
+.components-list li.active button {
+  transform: translateX(-120px); /* Moves the button to the left */
+  transition: transform 0.3s ease; /* Ensures smooth transition */
+}
+
+      /* Link styling for the hidden links */
+      .components-list li .hidden-link {
+        position: absolute;
+        opacity: 0;
+        max-width: 0;
+        margin-left: 100px;
+        padding: 0px 0px;
+        background: transparent;
+        padding: 0;
+        width: 200px;
+        color: white;
+        border-radius: 25px;
+        font-size: 0.9rem;
+      }
+
+      .components-list li.active .hidden-link {
+        margin-left: 250px;
+        opacity: 1;
+        max-width: 200px;
+      }
+
+      .components-list li .hidden-link {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
       /* Mobile Sidebar */
       @media (max-width: 768px) {
         .sidebar {
@@ -196,7 +258,7 @@
         }
 
         .content {
-          margin-left: 100px;
+          margin-left: 100px; /* Adjust for mobile */
         }
 
         body {
@@ -204,7 +266,7 @@
         }
       }
 
-      /* Components list hidden */
+      /* Hide components list by default */
       .components-list {
         display: none;
         margin-top: 20px;
@@ -217,15 +279,7 @@
         display: block;
       }
 
-      .components-list ul {
-        list-style-type: none;
-        padding: 0;
-      }
-
-      .components-list li {
-        margin: 5px 0;
-      }
-
+      /* Style for the links in the components list (now matching 'Show Components') */
       .components-list a {
         display: block;
         padding: 15px 30px;
@@ -238,8 +292,7 @@
       }
 
       .components-list a:hover {
-        background: linear-gradient(145deg, #2a5d8e, #3f7493);
-        /* Hover state */
+        background: linear-gradient(145deg, #2a5d8e, #3f7493); /* Hover state */
         transform: scale(1.05);
         box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
       }
@@ -253,10 +306,10 @@
         margin-right: 10px;
       }
 
+      /* Styling for the Show Components button */
       .components-btn-container button {
         padding: 15px 30px;
-        background: linear-gradient(145deg, #1f5176, #4c738c);
-        /* Updated gradient */
+        background: linear-gradient(145deg, #1f5176, #4c738c); /* Updated gradient */
         color: white;
         border: none;
         cursor: pointer;
@@ -278,7 +331,8 @@
       </div>
       <div class="divider"></div>
       <h2>Drop Pedal Build</h2>
-      <!-- Buttons -->
+
+      <!-- Sidebar Buttons -->
       <a href="#" style="text-decoration: none;">
         <button>
           <i class="fa-solid fa-diagram-project"> Schematics</i>
@@ -300,64 +354,107 @@
 " alt="Spider">
       </div>
     </div>
+
     <div class="content">
       <h1>Drop Pedal Build</h1>
       <p id="descriptionText">Schematics, components, etc.</p>
+
       <!-- Components List (Initially hidden) -->
       <div class="components-btn-container">
         <button onclick="showComponents()">Show Components</button>
       </div>
-      <div class="components-list" id="componentsList">
-        <ul>
-          <li>
-            <a href="https://www.mouser.ca/ProductDetail/187-CL21A106KAYNNNE" target="_blank">CL21A106KAYNNNE</a>
-          </li>
-          <li>
-            <a href="https://www.mouser.ca/ProductDetail/511-STM32H750VBT6" target="_blank">STM32H750VBT6</a>
-          </li>
-          <li>
-            <a href="https://www.mouser.ca/ProductDetail/595-TLV320C3105IRHBT" target="_blank">TLV320AIC3105IRHBT</a>
-          </li>
-          <li>
-            <a href="https://www.mouser.ca/ProductDetail/595-TL072HIDDFR" target="_blank">TL072HIDDFR</a>
-          </li>
-          <li>
-            <a href="https://www.mouser.ca/ProductDetail/71-CMF55100K00FHEA" target="_blank">CMF55100K00FHEA</a>
-          </li>
-          <li>
-            <a href="https://www.mouser.ca/ProductDetail/71-CMF551M0000FHEB" target="_blank">CMF551M0000FHEB</a>
-          </li>
-          <li>
-            <a href="https://www.mouser.ca/ProductDetail/80-C0805C104K1RAC" target="_blank">C0805C104K1RAC</a>
-          </li>
-          <li>
-            <a href="https://www.mouser.ca/ProductDetail/550-22302" target="_blank">NMJ6HCD2</a>
-          </li>
-          <li>
-            <a href="https://www.mouser.ca/ProductDetail/107-SF17020F-32-21RL" target="_blank">SF17020F-0302-21R-L-015</a>
-          </li>
-          <li>
-            <a href="https://www.mouser.ca/ProductDetail/Texas-Instruments/LM1117MPX-3.3-NOPB" target="_blank">LM1117MPX-3.3/NOPB</a>
-          </li>
-        </ul>
+<div class="components-list" id="componentsList">
+  <ul>
+    <li>
+      <button onclick="toggleLink(this)">10uF Ceramic Cap</button>
+      <div class="hidden-link">
+        <a href="https://www.mouser.ca/ProductDetail/187-CL21A106KAYNNNE" target="_blank">CL21A106KAYNNNE</a>
       </div>
-      <script>
-        function adjustContentHeight() {
-          const content = document.querySelector('.content');
-          const viewportHeight = window.innerHeight;
-          content.style.minHeight = `${viewportHeight}px`;
-        }
-        window.addEventListener('load', adjustContentHeight);
-        window.addEventListener('resize', adjustContentHeight);
+    </li>
+    <li>
+      <button onclick="toggleLink(this)">0.1uF Ceramic Cap</button>
+      <div class="hidden-link">
+        <a href="https://www.mouser.ca/ProductDetail/80-C0805C104K1RAC" target="_blank">C0805C104K1RAC</a>
+      </div>
+    </li>
+    <li>
+      <button onclick="toggleLink(this)">ADC</button>
+      <div class="hidden-link">
+        <a href="https://www.mouser.ca/ProductDetail/Texas-Instruments/TLV320AIC3105IRHBT" target="_blank">TLV320AIC3105IRHBT</a>
+      </div>
+    </li>
+    <li>
+      <button onclick="toggleLink(this)">Op Amp</button>
+      <div class="hidden-link">
+        <a href="https://www.mouser.ca/ProductDetail/595-TL072HIDDFR" target="_blank">TL072HIDDFR</a>
+      </div>
+    </li>
+    <li>
+      <button onclick="toggleLink(this)">100Kohm Resistor</button>
+      <div class="hidden-link">
+        <a href="https://www.mouser.ca/ProductDetail/71-CMF55100K00FHEA" target="_blank">CMF55100K00FHEA</a>
+      </div>
+    </li>
+    <li>
+      <button onclick="toggleLink(this)">1Mohm Resistor</button>
+      <div class="hidden-link">
+        <a href="https://www.mouser.ca/ProductDetail/71-CMF551M0000FHEB" target="_blank">CMF551M0000FHEB</a>
+      </div>
+    </li>
+    <li>
+      <button onclick="toggleLink(this)">Microcontroller</button>
+      <div class="hidden-link">
+        <a href="https://www.mouser.ca/ProductDetail/511-STM32H750VBT6" target="_blank">STM32H750VBT6</a>
+      </div>
+    </li>
+    <li>
+      <button onclick="toggleLink(this)">1/4" Jack</button>
+      <div class="hidden-link">
+        <a href="https://www.mouser.ca/ProductDetail/550-22302" target="_blank">NMJ6HCD2</a>
+      </div>
+    </li>
+    <li>
+      <button onclick="toggleLink(this)">3PDT Footswitch</button>
+      <div class="hidden-link">
+        <a href="https://www.mouser.ca/ProductDetail/107-SF17020F-32-21RL" target="_blank">SF17020F-0302-21R-L-015</a>
+      </div>
+    </li>
+    <li>
+      <button onclick="toggleLink(this)">Buck Converter</button>
+      <div class="hidden-link">
+        <a href="https://www.mouser.ca/ProductDetail/Monolithic-Power-Systems-MPS/MP1584EN-LF-Z" target="_blank">MP1584EN-LF-Z</a>
+      </div>
+    </li>
+  </ul>
+</div>
 
-        function showComponents() {
-          const componentsList = document.getElementById('componentsList');
-          componentsList.classList.toggle('visible');
-        }
+    <script>
+      function toggleSidebar() {
+        const sidebar = document.querySelector('.sidebar');
+        const content = document.querySelector('.content');
+        sidebar.classList.toggle('expanded');
+        content.classList.toggle('shifted');
+      }
 
-        function goBack() {
-          window.history.back();
-        }
-      </script>
+      function showComponents() {
+        const componentsList = document.getElementById('componentsList');
+        componentsList.classList.toggle('visible');
+      }
+
+      function goBack() {
+        window.history.back();
+      }
+
+function toggleLink(button) {
+  const listItem = button.parentElement; // Get the <li> element that contains the button
+  const link = listItem.querySelector('.hidden-link'); // Find the hidden link within the <li>
+
+  // Toggle the 'active' class on the <li> to show/hide the link
+  listItem.classList.toggle('active');
+}
+
+
+
+    </script>
   </body>
 </html>
