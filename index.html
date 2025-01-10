@@ -191,11 +191,7 @@
         .sidebar.expanded {
           width: 140px;
         }
-
-        .sidebar:hover {
-          width: 60px;
-          filter: brightness(0.8); /* pleaseee fix */
-
+        
         .sidebar button {
           font-size: 0.9rem;
         }
@@ -255,10 +251,6 @@
         const content = document.querySelector('.content');
         const viewportHeight = window.innerHeight;
         content.style.minHeight = `${viewportHeight}px`;
-      }
-      function toggleSidebar() {
-        const sidebar = document.querySelector('.sidebar');
-        sidebar.classList.toggle('expanded');  // Toggle the 'expanded' class
       }
 
       window.addEventListener('load', adjustContentHeight);
