@@ -256,6 +256,11 @@
         const viewportHeight = window.innerHeight;
         content.style.minHeight = `${viewportHeight}px`;
       }
+      function toggleSidebar() {
+        const sidebar = document.querySelector('.sidebar');
+        sidebar.classList.toggle('expanded');  // Toggle the 'expanded' class
+      }
+
       window.addEventListener('load', adjustContentHeight);
       window.addEventListener('resize', adjustContentHeight);
     </script>
