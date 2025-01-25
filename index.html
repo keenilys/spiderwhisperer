@@ -245,7 +245,7 @@
   </div>
 
   <script>
-    document.addEventListener('click', (event) => {
+    function canthissidebarfuckingwork(event) {
       const sidebar = document.querySelector('.sidebar');
       const isClickInsideSidebar = sidebar.contains(event.target);
       if (isClickInsideSidebar) {
@@ -254,7 +254,10 @@
       else {
         sidebar.classList.remove('expanded')
         }
-    });
+      }
+      if (window.matchMedia('(max-width: 768px)').matches) {
+      document.addEventListener('click', canthissidebarfuckingwork);
+      }
 
     function adjustContentHeight() {
       const content = document.querySelector('.content');
