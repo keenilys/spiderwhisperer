@@ -183,10 +183,6 @@
         width: 60px;
       }
 
-      .sidebar.expanded {
-        width: 100px;
-      }
-
       .sidebar button {
         font-size: 0.8rem;
         padding: 8px 12px;
@@ -213,7 +209,7 @@
 <body>
   <div class="sidebar">
     <!-- Hamburger Menu -->
-    <div class="hamburger" onclick="toggleSidebar()">
+    <div class="hamburger">
       <span></span>
       <span></span>
       <span></span>
@@ -252,12 +248,11 @@
     document.addEventListener('click', (event) => {
       const sidebar = document.querySelector('.sidebar');
       const isClickInsideSidebar = sidebar.contains(event.target);
-      const isClickOnHamburger = event.target.closest('.hamburger');
-      if (isClickInsideSidebar && isClickOnHamburger) {
+      if (isClickInsideSidebar) {
         sidebar.classList.add('expanded');
       }
       else {
-        sidebar.classlist.remove('expanded')
+        sidebar.classList.remove('expanded')
         }
     });
 
