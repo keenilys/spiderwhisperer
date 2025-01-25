@@ -184,7 +184,7 @@
       }
 
       .sidebar.expanded {
-        width: 70px;
+        width: 100px;
       }
 
       .sidebar button {
@@ -249,18 +249,16 @@
   </div>
 
   <script>
-    function toggleSidebar() {
-      const sidebar = document.querySelector('.sidebar');
-      sidebar.classList.toggle('expanded');
-    }
-
     document.addEventListener('click', (event) => {
       const sidebar = document.querySelector('.sidebar');
       const isClickInsideSidebar = sidebar.contains(event.target);
       const isClickOnHamburger = event.target.closest('.hamburger');
-      if (!isClickInsideSidebar && !isClickOnHamburger) {
-        sidebar.classList.remove('expanded');
+      if (isClickInsideSidebar && isClickOnHamburger) {
+        sidebar.classList.add('expanded');
       }
+      else {
+        sidebar.classlist.remove('expanded')
+        }
     });
 
     function adjustContentHeight() {
