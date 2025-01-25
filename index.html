@@ -19,6 +19,7 @@
         display: flex;
         overflow: hidden;
         min-height: 100vh;
+        touch-action: manipulation;
       }
 
       /* Sidebar Collapsed and Hover for PC, Expanded for Mobile */
@@ -39,7 +40,7 @@
         filter: brightness(0.8);
       }
 
-      .sidebar:expanded {
+      .sidebar.expanded {
         width: 160px;
         filter: brightness(1.0);
       }
@@ -137,7 +138,7 @@
       }
 
       .content {
-        margin-left: 16px;
+        margin-left: 80px;
         padding: 20px;
         text-align: center;
         color: white;
@@ -191,7 +192,7 @@
         .sidebar.expanded {
           width: 140px;
         }
-        
+
         .sidebar button {
           font-size: 0.9rem;
         }
@@ -202,7 +203,7 @@
         }
 
         .content {
-          margin-left: 100px;
+          margin-left: 60px;
         }
 
         body {
@@ -212,7 +213,7 @@
     </style>
   </head>
   <body>
-    <div class="sidebar">
+    <div class="sidebar" id="sidebar">
       <!-- Hamburger Menu -->
       <div class="hamburger" onclick="toggleSidebar()">
         <span></span>
