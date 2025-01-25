@@ -18,9 +18,13 @@
       overflow: hidden;
     }
 
+    :root {
+      --sidebar-width: 80px;
+    }
+
     /* Sidebar Collapsed and Hover for PC, Expanded for Mobile */
     .sidebar {
-      width: 80px;
+      width: var(--sidebar-width);
       height: 100%;
       background: linear-gradient(145deg, #102540, #204c6e);
       position: fixed;
@@ -37,7 +41,7 @@
 
     .sidebar.expanded,
     .sidebar:hover {
-      width: 160px;
+      --sidebar-width: 160px;
       filter: brightness(1);
     }
 
@@ -131,17 +135,19 @@
     }
 
     .content {
-      margin-left: 100px;
-      padding: 20px;
+      margin-left: var(--sidebar-width);
+      width: calc(100% - var(--sidebar-width));
       text-align: center;
       color: white;
-      width: 100%;
+      box-sizing: border-box;
+      overflow-wrap: normal;
       transition: margin-left 0.3s ease-in-out;
+      min-width: 200px;
     }
 
     .sidebar.expanded + .content,
     .sidebar:hover + .content {
-      margin-left: 160px;
+      margin-left: 150px;
     }
 
     h1 {
@@ -178,10 +184,18 @@
     @media (max-width: 768px) {
       body {
         background-position: 80% center;
+        overflow-x: hidden;
       }
+      .content {
+        margin-left: 20%;
+        }
       .sidebar {
         width: 60px;
       }
+
+      .sidebar.expanded {
+        width: 30%;
+        }
 
       .sidebar button {
         font-size: 0.8rem;
@@ -194,10 +208,10 @@
         bottom: 60px;
       }
 
-      .content {
-        margin-left: 80px;
-        padding-top: 50px;
+      body {
+        background-position: 75%
       }
+
       h1 {
         padding: 20px;
       }
