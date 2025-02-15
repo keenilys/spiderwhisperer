@@ -18,13 +18,10 @@
       overflow: hidden;
     }
 
-    :root {
-      --sidebar-width: 80px;
-    }
-
     /* Sidebar Collapsed and Hover for PC, Expanded for Mobile */
     .sidebar {
-      width: var(--sidebar-width);
+      width: 15vw;
+      max-width: 10%;
       height: 100%;
       background: linear-gradient(145deg, #102540, #204c6e);
       position: fixed;
@@ -41,7 +38,8 @@
 
     .sidebar.expanded,
     .sidebar:hover {
-      --sidebar-width: 160px;
+      width: 30vw;
+      max-width: 20%;
       filter: brightness(1);
     }
 
@@ -77,45 +75,48 @@
 
     /* Hamburger Menu */
     .hamburger {
+      width: 100%;
+      box-sizing: border-box;
       display: flex;
       flex-direction: column;
-      justify-content: space-around;
       align-items: center;
-      width: 30px;
-      height: 25px;
       cursor: pointer;
     }
 
     .hamburger span {
-      width: 30px;
-      height: 4px;
+      width: 10vw;
+      max-width: 50px;
+      height: 0.5vh;
       background: white;
       border-radius: 5px;
+      padding: 2px;
+      margin: 3px;
     }
 
     /* Sidebar Buttons */
     .sidebar button {
       background: linear-gradient(145deg, #1e3a5f, #3a577d);
-      border: 1px solid #2c456a;
-      padding: 10px 25px;
+      border: 0.5vw solid #2c456a;
+      padding: 1vw 2vw;
       margin: 20px 0;
       color: white;
-      font-size: 1rem;
+      font-size: 3vw;
+      font-size: min(max(16px, 4vw), 22px);
       font-family: 'Roboto', Arial, sans-serif;
       cursor: pointer;
       border-radius: 25px;
       transition: background 0.3s, box-shadow 0.3s, transform 0.2s;
-      min-width: 150px;
+      min-width: 10vw;
+      min-height: 5vh;
       height: auto;
+      width: 25vw;
+      max-width: 95%;
       display: flex;
       justify-content: center;
       align-items: center;
       text-align: center;
       position: relative;
       box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
-      overflow: hidden;
-      white-space: nowrap;
-      width: 100%;
       box-sizing: border-box;
     }
 
@@ -135,8 +136,10 @@
     }
 
     .content {
-      margin-left: var(--sidebar-width);
-      width: calc(100% - var(--sidebar-width));
+      margin-left: 10vw;
+      margin-top: 5vh;
+      width: calc(100% - 10vw);
+      padding-top: 2%;
       text-align: center;
       color: white;
       box-sizing: border-box;
@@ -173,11 +176,11 @@
 
     .extra-content img {
       width: 60%;
-      max-height: 150px;
+      max-height: 30vh;
       object-fit: contain;
       border-radius: 10px;
       position: relative;
-      bottom: 60px;
+      bottom: 5vh;
     }
 
     /* Mobile */
@@ -189,18 +192,6 @@
       .content {
         margin-left: 20%;
         }
-      .sidebar {
-        width: 60px;
-      }
-
-      .sidebar.expanded {
-        width: 30%;
-        }
-
-      .sidebar button {
-        font-size: 0.8rem;
-        padding: 8px 12px;
-      }
 
       .extra-content img {
         width: 50%;
@@ -213,7 +204,7 @@
       }
 
       h1 {
-        padding: 20px;
+        font-size: 2.5rem;
       }
       p {
         padding: 20px;
@@ -237,9 +228,9 @@
         <i class="fa-solid fa-film"></i> Bootlegs
       </button>
     </a>
-    <a href="/droppedal/" style="text-decoration: none;">
+    <a href="https://google.com/" style="text-decoration: none;">
       <button>
-        <i class="fa-solid fa-spider"></i> Drop Pedal
+        <i class="fa-solid fa-spider"></i> Temp Spot
       </button>
     </a>
     <a href="https://google.com/" style="text-decoration: none;">
