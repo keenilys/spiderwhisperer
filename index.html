@@ -21,7 +21,7 @@
     /* Sidebar Collapsed and Hover for PC, Expanded for Mobile */
     .sidebar {
       width: 15vw;
-      max-width: 10%;
+      max-width: 8%;
       height: 100%;
       background: linear-gradient(145deg, #102540, #204c6e);
       position: fixed;
@@ -39,7 +39,7 @@
     .sidebar.expanded,
     .sidebar:hover {
       width: 30vw;
-      max-width: 20%;
+      max-width: 15%;
       filter: brightness(1);
     }
 
@@ -66,7 +66,7 @@
     }
 
     .sidebar h2 {
-      font-size: 1.5rem;
+      font-size: 1.2rem;
       margin-bottom: 20px;
       text-align: center;
       color: white;
@@ -96,8 +96,8 @@
     /* Sidebar Buttons */
     .sidebar button {
       background: linear-gradient(145deg, #1e3a5f, #3a577d);
-      border: 0.5vw solid #2c456a;
-      padding: 1vw 2vw;
+      border: 0.2vw solid #2c456a;
+      padding: 1vh 0;
       margin: 20px 0;
       color: white;
       font-size: 3vw;
@@ -106,17 +106,16 @@
       cursor: pointer;
       border-radius: 25px;
       transition: background 0.3s, box-shadow 0.3s, transform 0.2s;
-      min-width: 10vw;
       min-height: 5vh;
       height: auto;
-      width: 25vw;
-      max-width: 95%;
+      width: auto;
+      min-width: 200px;
       display: flex;
       justify-content: center;
       align-items: center;
       text-align: center;
       position: relative;
-      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+      box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.3);
       box-sizing: border-box;
     }
 
@@ -198,6 +197,10 @@
         max-height: 120px;
         bottom: 60px;
       }
+
+      .sidebar button {
+      font-size: 3.3vw;
+      min-width: 100px;
 
       body {
         background-position: 75%
