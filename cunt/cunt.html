@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maxium-scale=1.0, user-scalable=no">
+  <title>Spider Whisperer</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    /*Background image, font, etc. */
+    body {
+      margin: 0;
+      padding: 0;
+      background: url('https://images2.imgbox.com/ac/d7/eYl7ZMX2_o.jpg') no-repeat center center/cover;
+      font-family: Arial, sans-serif;
+      color: white;
+      display: flex;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+
+    /* Sidebar Collapsed and Hover for PC, Expanded for Mobile */
+    .sidebar {
+      width: 15vw;
+      max-width: 8%;
+      height: 100%;
+      background: linear-gradient(145deg, #102540, #204c6e);
+      position: fixed;
+      top: 0;
+      left: 0;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: width 0.3s ease-in-out, filter 0.3s ease-in-out;
+      filter: brightness(0.8);
+      z-index: 1000;
+    }
+
+    .sidebar.expanded,
+    .sidebar:hover {
+      width: 30vw;
+      max-width: 15%;
+      filter: brightness(1);
+    }
+
+    .divider {
+      width: 80%;
+      height: 2px;
+      background: rgba(255, 255, 255, 0.3);
+      margin: 20px 0;
+    }
+    /* Sidebar Buttons and CSS */
+    .sidebar h2,
+    .sidebar button {
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+    }
+
+    .sidebar.expanded h2,
+    .sidebar.expanded button,
+    .sidebar:hover h2,
+    .sidebar:hover button {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .sidebar h2 {
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+      text-align: center;
+      color: white;
+      text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.7);
+    }
+
+    /* Hamburger Menu */
+    .hamburger {
+      width: 100%;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    .hamburger span {
+      width: 10vw;
+      max-width: 50px;
+      height: 0.5vh;
+      background: white;
+      border-radius: 5px;
+      padding: 2px;
+      margin: 3px;
+    }
+
+    /* Sidebar Buttons */
+    .sidebar button {
+      background: linear-gradient(145deg, #1e3a5f, #3a577d);
+      border: 0.2vw solid #2c456a;
+      padding: 1vh 0;
+      margin: 20px 0;
+      color: white;
+      font-size: 3vw;
+      font-size: min(max(16px, 4vw), 22px);
+      font-family: 'Roboto', Arial, sans-serif;
+      cursor: pointer;
+      border-radius: 25px;
+      transition: background 0.3s, box-shadow 0.3s, transform 0.2s;
+      min-height: 5vh;
+      height: auto;
+      width: auto;
+      min-width: 200px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.3);
+      box-sizing: border-box;
+    }
+
+    .sidebar button i {
+      margin-right: 10px;
+    }
+    /*Sidebar Hover / Active Effects*/
+    .sidebar button:hover {
+      background: linear-gradient(145deg, #2a4b78, #1e3a5f);
+      box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
+      transform: scale(1.05);
+    }
+
+    .sidebar button:active {
+      transform: scale(0.95);
+      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    .content {
+      margin-left: 10vw;
+      margin-top: 5vh;
+      width: calc(100% - 10vw);
+      padding-top: 2%;
+      text-align: center;
+      color: white;
+      box-sizing: border-box;
+      overflow-wrap: normal;
+      transition: margin-left 0.3s ease-in-out;
+      min-width: 200px;
+    }
+
+    h1 {
+      font-size: 3rem;
+      text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
+    }
+
+    p {
+      font-size: 1.2rem;
+      text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Spider Image at Bottom of Sidebar */
+    .extra-content {
+      width: 100%;
+      margin-top: auto;
+      padding-top: 20px;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .extra-content img {
+      width: 60%;
+      max-height: 30vh;
+      object-fit: contain;
+      border-radius: 10px;
+      position: relative;
+      bottom: 5vh;
+    }
+
+    /* Mobile */
+    @media (max-width: 768px) {
+      body {
+        background-position: 80% center;
+        overflow-x: hidden;
+      }
+      .content {
+        margin-left: 20%;
+        }
+
+      .extra-content img {
+        width: 50%;
+        max-height: 120px;
+        bottom: 60px;
+      }
+
+      .sidebar button {
+      font-size: 3.3vw;
+      min-width: 100px;
+
+      body {
+        background-position: 75%
+      }
+
+      h1 {
+        font-size: 2.5rem;
+      }
+      p {
+        padding: 20px;
+        }
+    }
+  </style>
+</head>
+<body>
+  <div class="sidebar">
+    <!-- Hamburger Menu -->
+    <div class="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <div class="divider"></div>
+    <h2>Spider Whisperer</h2>
+    <!-- Buttons -->
+    <a href="index.html" style="text-decoration: none;">
+      <button>
+        <i class="fa-solid fa-film"></i> Home
+      </button>
+    </a>
+    <a href="https://www.bootlegs.spiderwhisperer.ca/" style="text-decoration: none;">
+      <button>
+        <i class="fa-solid fa-spider"></i> Bootlegs
+      </button>
+    </a>
+    <a href="https://google.com/" style="text-decoration: none;">
+      <button>
+        <i class="fa-solid fa-heart"></i> Temp Spot
+      </button>
+    </a>
+
+    <!-- Spider Artwork Bottom Of Sidebar -->
+    <div class="extra-content">
+      <img src="https://static.vecteezy.com/system/resources/previews/009/381/394/non_2x/spider-clipart-design-illustration-free-png.png" alt="Spider Image">
+    </div>
+  </div>
+
+  <div class="content">
+    <h1>Cunt</h1>
+    <p></p>
+  </div>
+
+  <script>
+    function canthissidebarfuckingwork(event) {
+      const sidebar = document.querySelector('.sidebar');
+      const isClickInsideSidebar = sidebar.contains(event.target);
+      if (isClickInsideSidebar) {
+        sidebar.classList.add('expanded');
+      }
+      else {
+        sidebar.classList.remove('expanded')
+        }
+      }
+      if (window.matchMedia('(max-width: 768px)').matches) {
+      document.addEventListener('click', canthissidebarfuckingwork);
+      }
+
+    function adjustContentHeight() {
+      const content = document.querySelector('.content');
+      content.style.minHeight = `${window.innerHeight}px`;
+    }
+
+    window.addEventListener('load', adjustContentHeight);
+    window.addEventListener('resize', adjustContentHeight);
+  </script>
+</body>
+</html>
